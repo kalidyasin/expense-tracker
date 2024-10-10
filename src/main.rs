@@ -2,6 +2,7 @@ use actix_web::{get, middleware, App, HttpResponse, HttpServer, Responder};
 use env_logger::Env;
 
 mod configs;
+mod models;
 mod routes;
 
 #[get("/")]
