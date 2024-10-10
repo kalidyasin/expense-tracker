@@ -1,6 +1,8 @@
 use actix_web::{get, middleware, App, HttpResponse, HttpServer, Responder};
 use env_logger::Env;
 
+mod routes;
+
 #[get("/")]
 async fn index() -> impl Responder {
     HttpResponse::Ok().body("expense-tracker")
@@ -25,4 +27,3 @@ async fn main() -> std::io::Result<()> {
     .run()
     .await
 }
-
