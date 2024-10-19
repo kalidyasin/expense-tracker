@@ -7,7 +7,7 @@ mod routes;
 
 #[get("/")]
 async fn index() -> impl Responder {
-    HttpResponse::Ok().body("expense-tracker")
+    HttpResponse::Ok().json("expense-tracker")
 }
 
 #[get("/users")]
@@ -17,15 +17,15 @@ async fn get_users() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    env_logger::Builder::from_env(Env::default().default_filter_or("info")).init();
+    env_logger::Builder::from_env(Env::default().default_filter_or("debug")).init();
 
-    HttpServer::new(|| {
+    HttpServer::new(move || {
         App::new()
             .wrap(middleware::Logger::default())
             .service(index)
             .service(get_users)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("0.0.0.0", 8080))?
     .run()
     .await
 }
