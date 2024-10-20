@@ -10,6 +10,11 @@ async fn index() -> impl Responder {
     HttpResponse::Ok().json("expense-tracker")
 }
 
+#[get("/users/{id}")]
+async fn get_user(id: String) -> impl Responder {
+    HttpResponse::Ok().body(format!("get user: {}", id))
+}
+
 #[get("/users")]
 async fn get_users() -> impl Responder {
     HttpResponse::Ok().body("get users")
